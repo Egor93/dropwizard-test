@@ -1,0 +1,5 @@
+io/dropwizard/HelloWorldApplication.class
+io/dropwizard/health/TemplateHealthCheck.class
+io/dropwizard/resources/HelloWorldResource.class
+io/dropwizard/api/Saying.class
+io/dropwizard/HelloWorldConfiguration.class

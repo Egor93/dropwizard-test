@@ -1,0 +1,23 @@
+template: Bye Bye, %s!
+defaultName: Ranger
+
+# Database settings.
+database:
+  # the name of your JDBC driver
+  driverClass: org.postgresql.Driver
+  # the username
+  user: postgres
+
+  # the password
+  password: root
+  # the postgres URL
+  url: jdbc:postgresql://localhost:5432/pangaea
+    # any properties specific to your JDBC driver:
+  properties:
+    charSet: UTF-8
+
+server:
+  type: simple
+  connector:
+    type: http
+    port: 8080 #endpoint port
