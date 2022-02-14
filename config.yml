@@ -16,8 +16,8 @@ database:
   properties:
     charSet: UTF-8
 
-server:
-  type: simple
-  connector:
-    type: http
-    port: 8080 #endpoint port
+#server:
+#  type: simple
+#  connector:
+#    type: http
+#    port: 8080 #endpoint port

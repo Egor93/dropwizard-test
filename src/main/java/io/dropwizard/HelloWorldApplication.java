@@ -1,6 +1,7 @@
 package io.dropwizard;
 
 import io.dropwizard.api.HelloWorldDAO;
+import io.dropwizard.resources.DBresource;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.resources.HelloWorldResource;
@@ -51,17 +52,14 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration>
                 final JdbiFactory factory = new JdbiFactory();
                 final Jdbi jdbi = factory.build(environment, configuration.getDataSourceFactory(), "postgresql");
                 jdbi.installPlugin(new SqlObjectPlugin());
-                HelloWorldDAO helloWorldDAO = jdbi.onDemand(HelloWorldDAO.class);// implementation of the  interface
-                List<Integer> strings = helloWorldDAO.selectFirstNrows(10);
-                System.out.println("Returned query result is "+strings.toString());
+                DBresource dBresource = new DBresource(jdbi);
 
                 //DB related part: END
 
                 final HelloWorldResource resource = new HelloWorldResource
                         (
                         configuration.getTemplate(),
-                        configuration.getDefaultName(),
-                                jdbi //DB-related
+                        configuration.getDefaultName()
                         );
 
                 final TemplateHealthCheck healthCheck =
@@ -69,6 +67,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration>
                 environment.healthChecks().register("template", healthCheck);
 
                 environment.jersey().register(resource);
+                environment.jersey().register(dBresource);
         }
 
 }

@@ -18,13 +18,11 @@ public class HelloWorldResource
         private final String template;
         private final String defaultName;
         private final AtomicLong counter;
-        private final Jdbi jdbi; //DB-related
 
-        public HelloWorldResource(String template, String defaultName, Jdbi jdbi)
+        public HelloWorldResource(String template, String defaultName)
         {
                 this.template = template;
                 this.defaultName = defaultName;
-                this.jdbi = jdbi; //DB-related
                 this.counter = new AtomicLong();
         }
 

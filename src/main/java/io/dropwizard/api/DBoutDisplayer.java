@@ -2,37 +2,37 @@ package io.dropwizard.api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import org.glassfish.jersey.model.internal.RankedComparator;
 
-@JsonPropertyOrder({"TESTSTRING,id,content"})
-public class Saying {
-    private long id;
+import java.util.List;
 
+@JsonPropertyOrder({"DBQueryN,content"})
+public class DBoutDisplayer {
+    private int counter;
     private String teststr;
-    private String content;
+    private List<String> content;
 
-    public Saying() {
+    public DBoutDisplayer(long counter, List<String> content)
+    {
         // Jackson deserialization
-    }
-
-    public Saying(long id, String content) {
-        this.id = id;
-        this.teststr="Teststring from Saying.class";
+        this.counter = (int) counter;
         this.content = content;
     }
 
-    @JsonProperty(value = "id")
+
+    @JsonProperty(value = "DBQueryN")
     public long getId() {
-        return id;
+        return counter;
     }
 
+    /*
     @JsonProperty(value = "TESTSTRING",index = 1)
     public String getteststr() {
         return teststr;
     }
+*/
 
     @JsonProperty(value = "content")
-    public String getContent() {
+    public List<String> getContent() {
         return content;
     }
 }
